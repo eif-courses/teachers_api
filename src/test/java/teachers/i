@@ -1,0 +1,7 @@
+heroku container:login
+heroku create vikoteachers --region eu
+heroku container:login
+docker tag quarkus/teach-jvm registry.heroku.com/vikoteachers/web
+docker push registry.heroku.com/vikoteachers/web
+
+heroku container:release web -a vikoteachers

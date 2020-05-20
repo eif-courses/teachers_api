@@ -20,12 +20,13 @@ import java.util.List;
 @Path("/api")
 public class TeacherResource {
 
+  // erseer
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public String hello() throws IOException {
 
 
-    List<DataRows> dogs;
+    List<DataRows> teachers;
     String result;
 
     var url = new URL("https://vikoeif.edupage.org/rpr/server/maindbi.js?__func=mainDBIAccessor");
@@ -57,15 +58,19 @@ public class TeacherResource {
       Jsonb jsonb = JsonbBuilder.create(nillableConfig);
       Teacher p = jsonb.fromJson(response.toString(), Teacher.class);
 
-      dogs = new ArrayList<>(p.getDetails().getList().get(0).getList());
+      teachers = new ArrayList<>();
+      for (DataRows dt : p.getDetails().getList().get(0).getList()) {
+        dt.id = String.format("%s%s", "https://vikoeif.edupage.org/timetable/view.php?teacher=", dt.id);
+        teachers.add(dt);
+      }
 
       // Create Jsonb and serialize
       Jsonb js = JsonbBuilder.create();
-      result = js.toJson(dogs);
-      dogs = js.fromJson(result, new ArrayList<DataRows>(){}.getClass().getGenericSuperclass());
+      result = js.toJson(teachers);
+      //teachers = js.fromJson(result, new ArrayList<DataRows>() {}.getClass().getGenericSuperclass());
 
     }
-      System.out.println("Created Person ");
-      return result;
-    }
+    System.out.println("Created Person ");
+    return result;
   }
+}
