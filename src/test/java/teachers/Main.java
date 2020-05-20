@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Main {
   public static void main(String[] args) throws IOException {
-    var url = new URL("https://vikoeif.edupage.org/rpr/server/maindbi.js?__func=mainDBIAccessor");
+    URL url = new URL("https://vikoeif.edupage.org/rpr/server/maindbi.js?__func=mainDBIAccessor");
 
     HttpURLConnection con = (HttpURLConnection)url.openConnection();
 

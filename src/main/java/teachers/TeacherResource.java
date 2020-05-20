@@ -29,7 +29,7 @@ public class TeacherResource {
     List<DataRows> teachers;
     String result;
 
-    var url = new URL("https://vikoeif.edupage.org/rpr/server/maindbi.js?__func=mainDBIAccessor");
+    URL url = new URL("https://vikoeif.edupage.org/rpr/server/maindbi.js?__func=mainDBIAccessor");
 
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
